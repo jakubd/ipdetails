@@ -1,4 +1,4 @@
-package common
+package ipdetails
 
 // AddNumbers simply adds two nums together
 func AddNumbers(a, b int) int {
