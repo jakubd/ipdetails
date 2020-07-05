@@ -7,16 +7,18 @@ import (
 	"strconv"
 )
 
+// IPInfo is the struct of enriched geoip info
 type IPInfo struct {
-	IPStr       string
-	IP          net.IP
-	ASNum       int
-	ASNumStr    string
-	ASName      string
-	CountryCode string
-	CountryName string
+	IPStr       string // given IP String or input
+	IP          net.IP // net.IP representation of the IP string or input
+	ASNum       int    // Autonomous system number as int
+	ASNumStr    string // Autonomous system number as string prefixed with "AS"
+	ASName      string // Autonomous system name
+	CountryCode string // ISO Country Code
+	CountryName string // Country name
 }
 
+// OpenMaxmindDb will open the givenDbName from the default or givenDirectory and return the Reader object
 func OpenMaxmindDb(givenDbName string, givenDirectory ...string) (*geoip2.Reader, error) {
 	var maxmindDirectory string
 	if len(givenDirectory) == 0 {
@@ -33,6 +35,7 @@ func OpenMaxmindDb(givenDbName string, givenDirectory ...string) (*geoip2.Reader
 	return maxmindDb, nil
 }
 
+// Lookup will look up the givenIpStr string and return a fully parsed IPInfo struct
 func Lookup(givenIpStr string) (IPInfo, error) {
 
 	parseFailed := IPInfo{
