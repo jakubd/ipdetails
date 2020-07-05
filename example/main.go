@@ -7,4 +7,5 @@ import (
 
 func main() {
 	fmt.Println(ipdetails.Lookup("81.2.69.142"))
+
 }

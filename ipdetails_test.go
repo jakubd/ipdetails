@@ -12,8 +12,8 @@ func basicTestDb(t *testing.T, givenDbName string) {
 }
 
 func TestOpenMaxmindDb(t *testing.T) {
-	basicTestDb(t,"GeoLite2-ASN.mmdb")
-	basicTestDb(t,"GeoLite2-Country.mmdb")
+	basicTestDb(t, "GeoLite2-ASN.mmdb")
+	basicTestDb(t, "GeoLite2-Country.mmdb")
 
 	_, err := OpenMaxmindDb("df")
 	assert.Error(t, err)

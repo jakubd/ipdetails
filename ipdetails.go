@@ -8,16 +8,16 @@ import (
 )
 
 type IPInfo struct {
-	IPStr string
-	IP net.IP
-	ASNum int
-	ASNumStr string
-	ASName string
+	IPStr       string
+	IP          net.IP
+	ASNum       int
+	ASNumStr    string
+	ASName      string
 	CountryCode string
 	CountryName string
 }
 
-func OpenMaxmindDb(givenDbName string, givenDirectory ...string) (*geoip2.Reader, error){
+func OpenMaxmindDb(givenDbName string, givenDirectory ...string) (*geoip2.Reader, error) {
 	var maxmindDirectory string
 	if len(givenDirectory) == 0 {
 		maxmindDirectory = "/var/lib/GeoIP/"
