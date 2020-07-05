@@ -35,7 +35,7 @@ func OpenMaxmindDb(givenDbName string, givenDirectory ...string) (*geoip2.Reader
 
 func Lookup(givenIpStr string) (IPInfo, error) {
 
-	defaultParsed := IPInfo{
+	parseFailed := IPInfo{
 		IPStr:       givenIpStr,
 		IP:          nil,
 		ASNum:       -1,
@@ -45,8 +45,16 @@ func Lookup(givenIpStr string) (IPInfo, error) {
 		CountryName: "",
 	}
 
-	asnDb, _ := OpenMaxmindDb("GeoLite2-ASN.mmdb")
-	countryDb, _ := OpenMaxmindDb("GeoLite2-Country.mmdb")
+	asnDb, err := OpenMaxmindDb("GeoLite2-ASN.mmdb")
+	if err != nil {
+		return parseFailed, err
+	}
+
+	countryDb, err := OpenMaxmindDb("GeoLite2-Country.mmdb")
+	if err != nil {
+		return parseFailed, err
+	}
+
 	defer asnDb.Close()
 	defer countryDb.Close()
 
@@ -54,12 +62,12 @@ func Lookup(givenIpStr string) (IPInfo, error) {
 
 	asnRecord, err := asnDb.ASN(ip)
 	if err != nil {
-		return defaultParsed, err
+		return parseFailed, err
 	}
 
 	countryRecord, err := countryDb.Country(ip)
 	if err != nil {
-		return defaultParsed, err
+		return parseFailed, err
 	}
 
 	return IPInfo{
