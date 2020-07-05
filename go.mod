@@ -1,4 +1,4 @@
-module github.com/jakubd/referenceProject
+module github.com/jakubd/ipdetails
 
 go 1.13
 

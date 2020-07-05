@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/jakubd/referenceProject/common"
+	"github.com/jakubd/ipdetails/common"
 	log "github.com/sirupsen/logrus"
 )
 

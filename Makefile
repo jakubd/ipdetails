@@ -8,7 +8,7 @@ GOCLEAN=$(GOCMD) clean
 GOTEST=$(GOCMD) test
 GOGET=$(GOCMD) get
 GETDEPS=$(GOCMD) mod download
-BINARY_NAME=referenceProject.out
+BINARY_NAME=ipdetails.out
 
 all: deps test build
 build:
