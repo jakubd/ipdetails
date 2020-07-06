@@ -37,4 +37,13 @@ func TestLookup(t *testing.T) {
 	assert.Equal(t, badInfo.ASName, "")
 	assert.Equal(t, badInfo.CountryCode, "")
 	assert.Equal(t, badInfo.CountryName, "")
+
+	badIp2 := "81.2.69as.142"
+	badInfo2, err := Lookup(badIp2)
+	assert.Error(t, err)
+	assert.Equal(t, badInfo2.IPStr, badIp2)
+	assert.Equal(t, badInfo2.ASNum, -1)
+	assert.Equal(t, badInfo2.ASName, "")
+	assert.Equal(t, badInfo2.CountryCode, "")
+	assert.Equal(t, badInfo2.CountryName, "")
 }
