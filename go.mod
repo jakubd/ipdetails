@@ -3,7 +3,7 @@ module github.com/jakubd/ipdetails
 go 1.13
 
 require (
-	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/oschwald/geoip2-golang v1.4.0
+	github.com/spf13/cobra v1.1.3
 	github.com/stretchr/testify v1.4.0
 )

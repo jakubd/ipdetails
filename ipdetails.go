@@ -1,11 +1,33 @@
 package ipdetails
 
 import (
+	"fmt"
 	"github.com/oschwald/geoip2-golang"
 	"net"
 	"path"
 	"strconv"
+	"strings"
 )
+
+func OutputLookup(givenInput string, intel bool) {
+	ipinfo, err := Lookup(givenInput)
+	status := "good_ip"
+	if err != nil {
+		status = "bad_ip"
+	}
+	var record []string
+	record = []string{ipinfo.IPStr, ipinfo.CountryCode, ipinfo.ASName, ipinfo.ASNumStr, status}
+
+	if intel {
+		intelrecord := []string{
+			" https://censys.io/ipv4/" + ipinfo.IPStr + " ",
+			" https://www.shodan.io/host/" + ipinfo.IPStr + " ",
+			" https://bgp.he.net/" + ipinfo.ASNumStr + " ",
+		}
+		record = append(record, intelrecord...)
+	}
+	fmt.Println(strings.Join(record, ","))
+}
 
 // IPInfo is the struct of enriched geoip info
 type IPInfo struct {
